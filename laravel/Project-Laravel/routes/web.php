@@ -20,8 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[PizzaController::class,'index']);
-    return view('welcome');
+
 
 
 Route::group(['middleware'=>'auth'], function(){
@@ -36,6 +35,10 @@ Route::group(['middleware'=>'auth'], function(){
     Route::resource('employee', EmployeeController::class);
     Route::resource('customer', CustomerController::class);
     Route::resource('pizza', Pizzacontroller::class);
+    Route::get('/',[PizzaController::class,'index']);{
+        return view('welcome');
+    }
+      
 });
 
 
