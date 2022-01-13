@@ -10,5 +10,8 @@ class Pizza extends Model
     protected $fillable = [
         'naam', 'prijs','ingredienten',
     ];
-    
+    public function Ingredientrel()
+    {
+        return $this->belongsToMany('App\Ingredient');
+    }
 }

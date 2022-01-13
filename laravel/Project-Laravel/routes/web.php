@@ -35,6 +35,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::resource('employee', EmployeeController::class);
     Route::resource('customer', CustomerController::class);
     Route::resource('pizza', Pizzacontroller::class);
+    Route::resource('ingredient', IngredientController::class);
     Route::get('/',[PizzaController::class,'index']);{
         return view('welcome');
     }

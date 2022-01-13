@@ -24,16 +24,18 @@
     <body class="antialiased">
     @foreach ($pizza as $pizzas)
     <tr>
-      <th scope="row">{{ $pizzas->id }}</th>
+      <th scope="row">{{ $pizzas->id}}</th>
       <td>{{ $pizzas->naam }} </td>
       <td>{{ $pizzas->prijs }}</td>
       <td>{{ $pizzas->ingredienten }}</td>
+     
       <td>
 
       </td>
       
-    </tr>
+    </tr><br>
 @endforeach
+
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
