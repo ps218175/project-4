@@ -27,7 +27,7 @@
       <th scope="row">{{ $pizzas->id}}</th>
       <td>{{ $pizzas->naam }} </td>
       <td>{{ $pizzas->prijs }}</td>
-      <td>{{ $pizzas->ingredienten }}</td>
+     
      
       <td>
 
