@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <ListView Width="400" Height="200" x:Name="lijst"
+                ItemsSource="{Binding Pizza}" FontSize="18" Margin="50,0,46.8,0.6">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Width="200">
+                        <TextBlock Text="{Binding naam}" HorizontalAlignment="Left"/>
+                    </DockPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>
