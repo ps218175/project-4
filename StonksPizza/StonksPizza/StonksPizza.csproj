@@ -71,6 +71,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ingredienten.cs" />
     <Compile Include="Models\PizzaDb.cs" />
     <Compile Include="Models\pizza.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -32,6 +32,12 @@ namespace StonksPizza
             get { return pizza; }
             set { pizza = value; }
         }
+        private ObservableCollection<Models.ingredienten> ingredienten = new ObservableCollection<Models.ingredienten>();
+        public ObservableCollection<Models.ingredienten> Ingredienten
+        {
+            get { return ingredienten; }
+            set { ingredienten = value; }
+        }
 
         public MainWindow()
         {
@@ -48,8 +54,15 @@ namespace StonksPizza
                 pizza.Add(naam);
 
             }
+            ingredienten.Clear();
+            foreach (Models.ingredienten naam in _db.GetAllIngredient())
+            {
+                ingredienten.Add(naam);
+
+            }
 
         }
 
+        
     }
 }

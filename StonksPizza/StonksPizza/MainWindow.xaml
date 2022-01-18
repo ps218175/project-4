@@ -7,8 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ListView Width="400" Height="200" x:Name="lijst"
-                ItemsSource="{Binding Pizza}" FontSize="18" Margin="50,0,46.8,0.6">
+        <ListView x:Name="lijst"
+                ItemsSource="{Binding Pizza}" FontSize="18" Margin="10,10,515.6,260" >
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Width="200">
+                        <TextBlock Text="{Binding naam}" HorizontalAlignment="Left"/>
+                    </DockPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView x:Name="lijstIngr"
+                ItemsSource="{Binding Ingredienten}" FontSize="18" Margin="10,165,515.6,105">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
