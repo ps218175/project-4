@@ -27,3 +27,9 @@ C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\S
 C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\StonksPizza.csproj.CopyComplete
 C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\StonksPizza.exe
 C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\StonksPizza.pdb
+C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\Dashboard.g.cs
+C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\Dashboard.baml
+C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\Medewerker.g.cs
+C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\Medewerker.baml
+C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\Ingredienten.g.cs
+C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\Ingredienten.baml

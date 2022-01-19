@@ -20,21 +20,20 @@ using StonksPizza.Models;
 namespace StonksPizza
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Ingredienten.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Ingredienten : Window
     {
         private PizzaDb _db = new PizzaDb();
 
-        private ObservableCollection<Models.pizza> pizza = new ObservableCollection<Models.pizza>();
-        public ObservableCollection<Models.pizza> Pizza
+        private ObservableCollection<Models.ingredienten> ingredienten = new ObservableCollection<Models.ingredienten>();
+        public ObservableCollection<Models.ingredienten> Ingredient
         {
-            get { return pizza; }
-            set { pizza = value; }
+            get { return ingredienten; }
+            set { ingredienten = value; }
         }
-       
 
-        public MainWindow()
+        public Ingredienten()
         {
             InitializeComponent();
             LoadData();
@@ -43,15 +42,13 @@ namespace StonksPizza
         }
         private void LoadData()
         {
-            pizza.Clear();
-            foreach (Models.pizza naam in _db.GetAllPizza())
+            ingredienten.Clear();
+            foreach (Models.ingredienten naam in _db.GetAllIngredient())
             {
-                pizza.Add(naam);
+                ingredienten.Add(naam);
 
             }
-           
-        }
 
-        
+        }
     }
 }
