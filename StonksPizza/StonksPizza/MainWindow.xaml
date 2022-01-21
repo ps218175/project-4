@@ -7,17 +7,62 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"></ColumnDefinition>
+            <ColumnDefinition Width="15*"></ColumnDefinition>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="30*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="29*"></RowDefinition>
+            
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="1">Update Pizza</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="1">New Pizza</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="0">Pizza's</TextBlock>
+        <Image Source="img/logo.png" Grid.Column="0" Grid.Row="4" Width="150"></Image>
         <ListView x:Name="lijst"
-                ItemsSource="{Binding Pizza}" FontSize="18" Margin="10,65,515.6,10">
+                ItemsSource="{Binding Pizza}" SelectedItem="{Binding SelectedPizza}" FontSize="18" Width="250" Grid.Row="1" Grid.Column="0" SelectionChanged="lijst_SelectionChanged">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <DockPanel Width="200">
-                        <TextBlock Text="{Binding naam}" HorizontalAlignment="Left"/>
+                        <TextBlock Text="{Binding naam}"/>
                     </DockPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
+        <StackPanel Grid.Column="1" Grid.Row="1" DataContext="{Binding UpdatePizza}">
+            
+            <TextBox x:Name="id" Width="300" HorizontalAlignment="Left" Text="{Binding id}"/>
+            <TextBox x:Name="naam" Width="300" HorizontalAlignment="Left" Text="{Binding naam}"/>
+            <TextBox x:Name="beschrijving" Width="300" HorizontalAlignment="Left" Text="{Binding beschrijving}"/>
+            <TextBox x:Name="prijs" Width="300" HorizontalAlignment="Left" Text="{Binding prijs}"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Save" Click="BtnSave_Click" IsDefault="True" Width="75"/>
+                <Button Content="Delete" Background="Red" Click="Button_Click_1" IsDefault="True" Width="75"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Width="300" HorizontalAlignment="Left" DataContext="{Binding NewPizza}" Grid.Column="1" Grid.Row="3">
+            <TextBlock Text="Id:"/>
+            <TextBox Text="{Binding id}"/>
+            <TextBlock Text="Naam:"/>
+            <TextBox Text="{Binding naam}"/>
+            <TextBlock Text="Beschrijving:"/>
+            <TextBox Text="{Binding beschrijving}"/>
+            <TextBlock Text="prijs:"/>
+            <TextBox Text="{Binding prijs}"/>
+           
+
+
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Save" Click="Button_Click" IsDefault="True" Width="75"/>
+                
+            </StackPanel>
+
+
+        </StackPanel>
     </Grid>
 </Window>

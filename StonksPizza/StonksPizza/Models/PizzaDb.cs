@@ -141,5 +141,138 @@ INSERT INTO `employees`(`id`, `first_name`, `last_name`, `address`, `phone`, `zi
             }
             return result;
         }
+        public bool InsertIntoPizza(pizza newPizza)
+        {
+            bool result = true;
+            try
+            {
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+                MySqlCommand sql = conn.CreateCommand();
+                sql.CommandText =
+                    @"
+INSERT INTO `pizza`(`id`, `naam`, `beschrijving`, `prijs`) VALUES (@id,@naam,@beschrijving,@prijs)";
+
+                sql.Parameters.AddWithValue("@id", newPizza.id);
+                sql.Parameters.AddWithValue("@naam", newPizza.naam);
+                sql.Parameters.AddWithValue("@beschrijving", newPizza.beschrijving);
+                sql.Parameters.AddWithValue("@prijs", newPizza.prijs);
+                
+                sql.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("***InsertIntoCountry***");
+                Console.WriteLine(e.Message);
+                result = false;
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            return result;
+        }
+
+        public bool UpdatePizza(pizza SelectedPizza, pizza UpdatePizza)
+        {
+
+            bool result = true;
+            try
+            {
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+                MySqlCommand sql = conn.CreateCommand();
+                sql.CommandText =
+                    @"
+UPDATE `pizza` SET `id`=@id,`naam`=@naam,`beschrijving`=@beschrijving,`prijs`=@prijs WHERE `id` = @id";
+
+                
+                if (UpdatePizza.naam == null)
+                {
+                    UpdatePizza.naam = SelectedPizza.naam;
+                }
+                else
+                {
+                    UpdatePizza.naam = UpdatePizza.naam;
+                }
+                if (UpdatePizza.beschrijving == null)
+                {
+                    UpdatePizza.beschrijving = SelectedPizza.beschrijving;
+                }
+                else
+                {
+                    UpdatePizza.beschrijving = UpdatePizza.beschrijving;
+                }
+                if (UpdatePizza.prijs == null)
+                {
+                    UpdatePizza.prijs = SelectedPizza.prijs;
+                }
+                else
+                {
+                    UpdatePizza.prijs = UpdatePizza.prijs;
+                }
+                sql.Parameters.AddWithValue("@id", SelectedPizza.id);
+                sql.Parameters.AddWithValue("@naam", UpdatePizza.naam);
+                sql.Parameters.AddWithValue("@beschrijving", UpdatePizza.beschrijving);
+                sql.Parameters.AddWithValue("@prijs", UpdatePizza.prijs);
+               
+                sql.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("***InsertIntoCountry***");
+                Console.WriteLine(e.Message);
+                result = false;
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            return result;
+        }
+
+        public bool DeletePizza(int id)
+        {
+            bool result = true;
+            try
+            {
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+                MySqlCommand sql = conn.CreateCommand();
+                sql.CommandText =
+                    @"DELETE FROM pizza 
+                       WHERE id = @id";
+
+                sql.Parameters.AddWithValue("@id", id);
+                sql.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("***DeleteCustomer***");
+                Console.WriteLine(e.Message);
+                result = false;
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            return result;
+            
+        }
     }
 }

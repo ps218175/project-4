@@ -33,3 +33,5 @@ C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\M
 C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\Medewerker.baml
 C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\Ingredienten.g.cs
 C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\Ingredienten.baml
+C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\Login.g.cs
+C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\Login.baml
