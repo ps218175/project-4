@@ -16,6 +16,7 @@ namespace StonksPizza.Models
           ConfigurationManager.ConnectionStrings["PizzaCS"].ConnectionString
           );
 
+        //Get All
         public List<pizza> GetAllPizza()
         {
             List<pizza> result = new List<pizza>();
@@ -60,8 +61,8 @@ namespace StonksPizza.Models
                 ingredienten item = new ingredienten();
                 item.id = (int)row["id"];
                 item.naam = (string)row["naam"];
-               
-                item.prijs = (int)row["prijs"];
+                item.unit = (int)row["unit"];
+                item.prijs = (decimal)row["prijs"];
 
                 result.Add(item);
             }
@@ -98,6 +99,7 @@ namespace StonksPizza.Models
             return result;
         }
 
+        //Insert
         public bool InsertIntoMedewerker(medewerker newMedewerker)
         {
             bool result = true;
@@ -177,7 +179,43 @@ INSERT INTO `pizza`(`id`, `naam`, `beschrijving`, `prijs`) VALUES (@id,@naam,@be
             }
             return result;
         }
+        public bool InsertIntoIngredient(ingredienten newIngredient)
+        {
+            bool result = true;
+            try
+            {
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+                MySqlCommand sql = conn.CreateCommand();
+                sql.CommandText =
+                    @"
+INSERT INTO `ingredienten`(`id`, `naam`, `unit`, `prijs`) VALUES (@id,@naam,@unit,@prijs)";
 
+                sql.Parameters.AddWithValue("@id", newIngredient.id);
+                sql.Parameters.AddWithValue("@naam", newIngredient.naam);
+                sql.Parameters.AddWithValue("@unit", newIngredient.unit);
+                sql.Parameters.AddWithValue("@prijs", newIngredient.prijs);
+
+                sql.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("***InsertIntoCountry***");
+                Console.WriteLine(e.Message);
+                result = false;
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            return result;
+        }
+        //Update
         public bool UpdatePizza(pizza SelectedPizza, pizza UpdatePizza)
         {
 
@@ -240,7 +278,70 @@ UPDATE `pizza` SET `id`=@id,`naam`=@naam,`beschrijving`=@beschrijving,`prijs`=@p
             }
             return result;
         }
+        public bool UpdateIngredienten(ingredienten SelectedIngredient, ingredienten UpdateIngredient)
+        {
 
+            bool result = true;
+            try
+            {
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+                MySqlCommand sql = conn.CreateCommand();
+                sql.CommandText =
+                    @"
+UPDATE `ingredienten` SET `id`=@id,`naam`=@naam,`unit`=@unit,`prijs`=@prijs WHERE `id` = @id";
+
+
+                if (UpdateIngredient.naam == null)
+                {
+                    UpdateIngredient.naam = SelectedIngredient.naam;
+                }
+                else
+                {
+                    UpdateIngredient.naam = UpdateIngredient.naam;
+                }
+                if (UpdateIngredient.unit <= 0)
+                {
+                    UpdateIngredient.unit = SelectedIngredient.unit;
+                }
+                else
+                {
+                    UpdateIngredient.unit = UpdateIngredient.unit;
+                }
+                if (UpdateIngredient.prijs <= 0)
+                {
+                    UpdateIngredient.prijs = SelectedIngredient.prijs;
+                }
+                else
+                {
+                    UpdateIngredient.prijs = UpdateIngredient.prijs;
+                }
+                sql.Parameters.AddWithValue("@id", SelectedIngredient.id);
+                sql.Parameters.AddWithValue("@naam", UpdateIngredient.naam);
+                sql.Parameters.AddWithValue("@unit", UpdateIngredient.unit);
+                sql.Parameters.AddWithValue("@prijs", UpdateIngredient.prijs);
+
+                sql.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("***InsertIntoCountry***");
+                Console.WriteLine(e.Message);
+                result = false;
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            return result;
+        }
+
+        //Delete
         public bool DeletePizza(int id)
         {
             bool result = true;
@@ -273,6 +374,39 @@ UPDATE `pizza` SET `id`=@id,`naam`=@naam,`beschrijving`=@beschrijving,`prijs`=@p
             }
             return result;
             
+        }
+        public bool DeleteIngredient(int id)
+        {
+            bool result = true;
+            try
+            {
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+                MySqlCommand sql = conn.CreateCommand();
+                sql.CommandText =
+                    @"DELETE FROM ingredienten 
+                       WHERE id = @id";
+
+                sql.Parameters.AddWithValue("@id", id);
+                sql.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("***DeleteCustomer***");
+                Console.WriteLine(e.Message);
+                result = false;
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            return result;
+
         }
     }
 }

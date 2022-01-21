@@ -26,6 +26,32 @@ namespace StonksPizza
     {
         private PizzaDb _db = new PizzaDb();
 
+        private Models.ingredienten updateIngredient;
+        public Models.ingredienten UpdateIngredient
+        {
+            get { return updateIngredient; }
+            set { updateIngredient = value; }
+        }
+
+        private Models.ingredienten newIngredient;
+        public Models.ingredienten NewIngredient
+        {
+            get { return newIngredient; }
+            set { newIngredient = value; }
+        }
+
+        private Models.ingredienten selectedIngredient;
+
+        public Models.ingredienten SelectedIngredient
+        {
+            get { return selectedIngredient; }
+            set
+            {
+                selectedIngredient = value;
+
+            }
+        }
+
         private ObservableCollection<Models.ingredienten> ingredienten = new ObservableCollection<Models.ingredienten>();
         public ObservableCollection<Models.ingredienten> Ingredient
         {
@@ -37,7 +63,8 @@ namespace StonksPizza
         {
             InitializeComponent();
             LoadData();
-
+            UpdateIngredient = new Models.ingredienten();
+            NewIngredient = new Models.ingredienten();
             DataContext = this;
         }
         private void LoadData()
@@ -49,6 +76,79 @@ namespace StonksPizza
 
             }
 
+        }
+
+        private void lijstIngr_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lijstIngr.SelectedItem == null)
+            {
+                return;
+            }
+            ingredienten updateIngredient = lijstIngr.SelectedItem as ingredienten;
+            id.Text = selectedIngredient.id.ToString();
+            naam.Text = selectedIngredient.naam.ToString();
+            unit.Text = selectedIngredient.unit.ToString();
+            prijs.Text = selectedIngredient.prijs.ToString();
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(selectedIngredient.naam))
+            {
+                MessageBox.Show("Vul een naam voor de customer in");
+                return;
+            }
+            if (!_db.UpdateIngredienten(selectedIngredient, UpdateIngredient))
+            {
+                MessageBox.Show("Fout bij het toevoegen van een customer");
+                return;
+            };
+
+            DialogResult = true;
+
+
+            Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (selectedIngredient == null)
+            {
+                MessageBox.Show("Selecteer eerst een customer");
+                return;
+            }
+            if (_db.DeleteIngredient(selectedIngredient.id))
+            {
+                ingredienten.Remove(selectedIngredient);
+
+            }
+            else
+            {
+                MessageBox.Show($"Het {selectedIngredient.naam} kon niet worden verwijderd.");
+            }
+            id.Text = "";
+            naam.Text = "";
+            unit.Text = "";
+            prijs.Text = "";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(NewIngredient.naam))
+            {
+                MessageBox.Show("Vul een naam voor de customer in");
+                return;
+            }
+            if (!_db.InsertIntoIngredient(NewIngredient))
+            {
+                MessageBox.Show("Fout bij het toevoegen van een customer");
+                return;
+            };
+
+            DialogResult = true;
+
+
+            Close();
         }
     }
 }

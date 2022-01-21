@@ -9,9 +9,9 @@ namespace StonksPizza.Models
     public class ingredienten
     {
         public int id { get; set; }
-
+        public int unit { get; set; }
         public string naam { get; set; }
-        public int prijs { get; set; }
+        public decimal prijs { get; set; }
         
     }
 }

@@ -1,5 +1,4 @@
 C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\StonksPizza.csprojAssemblyReference.cache
-C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\StonksPizza.exe.config
 C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\MainWindow.g.cs
 C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\App.g.cs
 C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\StonksPizza_MarkupCompile.cache
@@ -35,3 +34,10 @@ C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\I
 C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\Ingredienten.baml
 C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\Login.g.cs
 C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\Login.baml
+C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\bin\Debug\BCrypt.Net-Next.dll
+C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\bin\Debug\BCrypt.Net-Next.xml
+C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\bin\Debug\System.Buffers.xml
+C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\bin\Debug\System.Memory.xml
+C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
