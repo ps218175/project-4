@@ -41,6 +41,7 @@
                 <Button Content="Delete" Background="Red" Click="Button_Click_1" IsDefault="True" Width="75"/>
             </StackPanel>
         </StackPanel>
+        <Image Source="img/logo.png" Grid.Column="0" Grid.Row="4" Width="150"></Image>
         <StackPanel Width="300" HorizontalAlignment="Left" DataContext="{Binding NewIngredient}" Grid.Column="1" Grid.Row="3">
             <TextBlock Text="Id:"/>
             <TextBox Text="{Binding id}"/>

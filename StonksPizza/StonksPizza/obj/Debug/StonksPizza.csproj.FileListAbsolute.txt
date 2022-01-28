@@ -41,3 +41,5 @@ C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\bin\Debug\S
 C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\bin\Debug\System.Memory.xml
 C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\Bestellingen.g.cs
+C:\Users\Seph\Documents\LEERJAAR 2\project-4\StonksPizza\StonksPizza\obj\Debug\Bestellingen.baml

@@ -20,6 +20,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+       
         <StackPanel HorizontalAlignment="Right" DataContext="{Binding NewMedewerker}">
             <TextBlock Text="Id:"/>
             <TextBox Text="{Binding id}"/>

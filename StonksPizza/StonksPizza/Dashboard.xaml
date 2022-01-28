@@ -24,5 +24,6 @@
         <Button Grid.Column="0" Grid.Row="0" Width="100" Height="45" Click="Button_Click">Medewerkers</Button>
         <Button Grid.Column="0" Grid.Row="1" Width="100" Height="45" Click="Button_Click_1">Pizza's</Button>
         <Button Grid.Column="0" Grid.Row="2" Width="100" Height="45" Click="Button_Click_2">Ingrediënten</Button>
+        <Button Grid.Column="0" Grid.Row="3" Width="100" Height="45" Click="Button_Click_3">Bestellingen</Button>
     </Grid>
 </Window>

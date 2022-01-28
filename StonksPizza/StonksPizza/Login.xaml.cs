@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,56 +20,85 @@ using MySql.Data.MySqlClient;
 using StonksPizza.Models;
 namespace StonksPizza
 {
+
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
     public partial class Login : Window
     {
-        MySqlConnection con = new MySqlConnection();
+        private string salt;
+        private string hash;
+        private MySqlConnection conn = new MySqlConnection(
+         ConfigurationManager.ConnectionStrings["PizzaCS"].ConnectionString
+         );
+
         public Login()
         {
             InitializeComponent();
-            MySqlConnection con = new MySqlConnection();
-            con.ConnectionString = "server=localhost;user=root;database=Pizza;";
+            LoadData();
+
+            DataContext = this;
         }
-        private void Form1_Load(object sender, EventArgs e)
+        private void LoadData()
         {
-            // TODO: This line of code loads data into the 'sTUDENTDataSet.login' table. You can move, or remove it, as needed.  
-            //this.loginTableAdapter.Fill(this.sTUDENTDataSet.login);  
-            MySqlConnection con = new MySqlConnection("server=localhost;user=root;database=Pizza;");
-            con.Open();
 
-            {
-            }
         }
-        private void button1_Click(object sender, EventArgs e)
+
+
+        private void LoginPass()
         {
-            MySqlConnection con = new MySqlConnection();
-            con.ConnectionString = "server=localhost;user=root;database=Pizza;";
-            con.Open();
-            string userid = textBox1.Text;
-            string password = textBox2.Text;
-            MySqlCommand cmd = new MySqlCommand("select email,name from users where email='" + textBox1.Text + "'and name='" + textBox2.Text + "'", con);
-            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            if (dt.Rows.Count > 0)
+            try
             {
-                this.Hide();
-                Dashboard signIn = new Dashboard();
-                signIn.ShowDialog();
-                this.Show();
+                string myPassword = Password.Text;
+                salt = BCrypt.Net.BCrypt.GenerateSalt();
+                hash = BCrypt.Net.BCrypt.HashPassword(Password.Text, salt);
 
+                bool correct = BCrypt.Net.BCrypt.Verify(Password.Text, hash);
+
+                conn.Open();
+                MySqlCommand command = conn.CreateCommand();
+                command.CommandText = "" +
+                    @"SELECT u.id, u.name, u.email, u.password FROM users u  WHERE u.name = @name";
+                command.Parameters.AddWithValue("@name", txtname.Text);
+                command.Parameters.AddWithValue("@password", Password.Text).Value = hash;
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    if (BCrypt.Net.BCrypt.Verify(Password.Text, (string)reader["password"])) ;
+                    {
+
+                        this.Hide();
+                        Dashboard signIn = new Dashboard();
+                        signIn.ShowDialog();
+                        this.Show();
+
+
+
+
+                    }
+
+                }
 
 
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("Invalid Login please check username and password");
+
+                MessageBox.Show("");
             }
-            con.Close();
+        }
+      
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            LoginPass();
+           
+           
+
         }
 
-        
+      
+       
+
     }
 }

@@ -73,6 +73,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Bestellingen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -92,6 +96,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bestellingen.xaml.cs">
+      <DependentUpon>Bestellingen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
@@ -115,10 +122,12 @@
     <Compile Include="Medewerker.xaml.cs">
       <DependentUpon>Medewerker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\bestelling.cs" />
     <Compile Include="Models\ingredienten.cs" />
     <Compile Include="Models\medewerker.cs" />
     <Compile Include="Models\PizzaDb.cs" />
     <Compile Include="Models\pizza.cs" />
+    <Compile Include="Models\statussen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

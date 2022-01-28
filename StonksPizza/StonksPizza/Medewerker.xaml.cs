@@ -52,7 +52,7 @@ namespace StonksPizza
             get { return medewerker; }
             set { medewerker = value; }
         }
-
+       
 
         public Medewerker()
         {
@@ -69,6 +69,7 @@ namespace StonksPizza
                 medewerker.Add(last_name);
 
             }
+           
             DateTime.Now.ToString("yyMMdd");
         }
 

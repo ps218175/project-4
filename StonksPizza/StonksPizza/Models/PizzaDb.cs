@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
+using System.Security.Cryptography;
+
 namespace StonksPizza.Models
 {
     class PizzaDb
@@ -64,6 +66,34 @@ namespace StonksPizza.Models
                 item.unit = (int)row["unit"];
                 item.prijs = (decimal)row["prijs"];
 
+                result.Add(item);
+            }
+
+            conn.Close();
+
+            return result;
+        }
+        public List<bestelling> GetAllBestellingen()
+        {
+            List<bestelling> result = new List<bestelling>();
+
+            conn.Open();
+            MySqlCommand sql = conn.CreateCommand();
+            sql.CommandText = "SELECT * from bestelling inner join status on bestelling.Status_Id = status.id INNER JOIN customers ON bestelling.KlantId = customers.id";
+            MySqlDataReader reader = sql.ExecuteReader();
+
+            DataTable table = new DataTable();
+            table.Load(reader);
+
+            foreach (DataRow row in table.Rows)
+            {
+                bestelling item = new bestelling();
+                item.id = (int)row["id"];
+                item.Status_Id = (int)row["Status_Id"];
+                item.Bestel_Id = (int)row["Bestel_Id"];
+                item.status = (string)row["status"];
+                item.KlantId = (int)row["KlantId"];
+                item.last_name = (string)row["last_name"];
                 result.Add(item);
             }
 
@@ -341,6 +371,54 @@ UPDATE `ingredienten` SET `id`=@id,`naam`=@naam,`unit`=@unit,`prijs`=@prijs WHER
             return result;
         }
 
+        public bool UpdateBestelling(bestelling SelectedBestelling, bestelling UpdateBestelling)
+        {
+
+            bool result = true;
+            try
+            {
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+                MySqlCommand sql = conn.CreateCommand();
+                sql.CommandText =
+                    @"
+UPDATE `bestelling` SET `id`=@id,`KlantId`=@KlantId,`Bestel_Id`=@Bestel_Id,`Status_Id`=@Status_Id WHERE `id` = @id";
+
+
+               
+                if (UpdateBestelling.Status_Id <= 0)
+                {
+                    UpdateBestelling.Status_Id = SelectedBestelling.Status_Id;
+                }
+                else
+                {
+                    UpdateBestelling.Status_Id = UpdateBestelling.Status_Id;
+                }
+                sql.Parameters.AddWithValue("@id", SelectedBestelling.id);
+                sql.Parameters.AddWithValue("@KlantId", SelectedBestelling.KlantId);
+                sql.Parameters.AddWithValue("@Bestel_Id", SelectedBestelling.Bestel_Id);
+                sql.Parameters.AddWithValue("@Status_Id", UpdateBestelling.Status_Id);
+
+                sql.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("***InsertIntoCountry***");
+                Console.WriteLine(e.Message);
+                result = false;
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            return result;
+        }
+
         //Delete
         public bool DeletePizza(int id)
         {
@@ -408,5 +486,7 @@ UPDATE `ingredienten` SET `id`=@id,`naam`=@naam,`unit`=@unit,`prijs`=@prijs WHER
             return result;
 
         }
+
+        
     }
 }

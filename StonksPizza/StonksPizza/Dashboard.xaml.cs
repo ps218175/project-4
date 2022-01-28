@@ -46,5 +46,12 @@ namespace StonksPizza
 
             item.ShowDialog();
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Bestellingen item = new Bestellingen();
+
+            item.ShowDialog();
+        }
     }
 }
