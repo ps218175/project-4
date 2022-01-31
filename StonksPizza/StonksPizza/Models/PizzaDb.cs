@@ -25,7 +25,7 @@ namespace StonksPizza.Models
 
             conn.Open();
             MySqlCommand sql = conn.CreateCommand();
-            sql.CommandText = "SELECT * FROM `pizza`";
+            sql.CommandText = "SELECT * from pizza inner join pizza_ingredienten on pizza.id = pizza_ingredienten.PizzaId INNER JOIN ingredienten ON ingredienten.id = pizza_ingredienten.IngredientId";
             MySqlDataReader reader = sql.ExecuteReader();
 
             DataTable table = new DataTable();
@@ -39,8 +39,16 @@ namespace StonksPizza.Models
                 item.beschrijving = (string)row["beschrijving"];
                 item.prijs = (string)row["prijs"];
 
+                item.naam_ingr = (string)row["naam_ingr"];
+                item.unit = (int)row["unit"];
+                item.prijs_ingr = (decimal)row["prijs_ingr"];
+
+
+                item.prijs = (string)row["prijs"];
+
                 result.Add(item);
             }
+
 
             conn.Close();
 
@@ -62,9 +70,9 @@ namespace StonksPizza.Models
             {
                 ingredienten item = new ingredienten();
                 item.id = (int)row["id"];
-                item.naam = (string)row["naam"];
+                item.naam_ingr = (string)row["naam"];
                 item.unit = (int)row["unit"];
-                item.prijs = (decimal)row["prijs"];
+                item.prijs_ingr = (decimal)row["prijs"];
 
                 result.Add(item);
             }
@@ -191,7 +199,7 @@ INSERT INTO `pizza`(`id`, `naam`, `beschrijving`, `prijs`) VALUES (@id,@naam,@be
                 sql.Parameters.AddWithValue("@naam", newPizza.naam);
                 sql.Parameters.AddWithValue("@beschrijving", newPizza.beschrijving);
                 sql.Parameters.AddWithValue("@prijs", newPizza.prijs);
-                
+
                 sql.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -224,9 +232,9 @@ INSERT INTO `pizza`(`id`, `naam`, `beschrijving`, `prijs`) VALUES (@id,@naam,@be
 INSERT INTO `ingredienten`(`id`, `naam`, `unit`, `prijs`) VALUES (@id,@naam,@unit,@prijs)";
 
                 sql.Parameters.AddWithValue("@id", newIngredient.id);
-                sql.Parameters.AddWithValue("@naam", newIngredient.naam);
+                sql.Parameters.AddWithValue("@naam", newIngredient.naam_ingr);
                 sql.Parameters.AddWithValue("@unit", newIngredient.unit);
-                sql.Parameters.AddWithValue("@prijs", newIngredient.prijs);
+                sql.Parameters.AddWithValue("@prijs", newIngredient.prijs_ingr);
 
                 sql.ExecuteNonQuery();
             }
@@ -261,7 +269,7 @@ INSERT INTO `ingredienten`(`id`, `naam`, `unit`, `prijs`) VALUES (@id,@naam,@uni
                     @"
 UPDATE `pizza` SET `id`=@id,`naam`=@naam,`beschrijving`=@beschrijving,`prijs`=@prijs WHERE `id` = @id";
 
-                
+
                 if (UpdatePizza.naam == null)
                 {
                     UpdatePizza.naam = SelectedPizza.naam;
@@ -290,7 +298,7 @@ UPDATE `pizza` SET `id`=@id,`naam`=@naam,`beschrijving`=@beschrijving,`prijs`=@p
                 sql.Parameters.AddWithValue("@naam", UpdatePizza.naam);
                 sql.Parameters.AddWithValue("@beschrijving", UpdatePizza.beschrijving);
                 sql.Parameters.AddWithValue("@prijs", UpdatePizza.prijs);
-               
+
                 sql.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -324,13 +332,13 @@ UPDATE `pizza` SET `id`=@id,`naam`=@naam,`beschrijving`=@beschrijving,`prijs`=@p
 UPDATE `ingredienten` SET `id`=@id,`naam`=@naam,`unit`=@unit,`prijs`=@prijs WHERE `id` = @id";
 
 
-                if (UpdateIngredient.naam == null)
+                if (UpdateIngredient.naam_ingr == null)
                 {
-                    UpdateIngredient.naam = SelectedIngredient.naam;
+                    UpdateIngredient.naam_ingr = SelectedIngredient.naam_ingr;
                 }
                 else
                 {
-                    UpdateIngredient.naam = UpdateIngredient.naam;
+                    UpdateIngredient.naam_ingr = UpdateIngredient.naam_ingr;
                 }
                 if (UpdateIngredient.unit <= 0)
                 {
@@ -340,18 +348,18 @@ UPDATE `ingredienten` SET `id`=@id,`naam`=@naam,`unit`=@unit,`prijs`=@prijs WHER
                 {
                     UpdateIngredient.unit = UpdateIngredient.unit;
                 }
-                if (UpdateIngredient.prijs <= 0)
+                if (UpdateIngredient.prijs_ingr <= 0)
                 {
-                    UpdateIngredient.prijs = SelectedIngredient.prijs;
+                    UpdateIngredient.prijs_ingr = SelectedIngredient.prijs_ingr;
                 }
                 else
                 {
-                    UpdateIngredient.prijs = UpdateIngredient.prijs;
+                    UpdateIngredient.prijs_ingr = UpdateIngredient.prijs_ingr;
                 }
                 sql.Parameters.AddWithValue("@id", SelectedIngredient.id);
-                sql.Parameters.AddWithValue("@naam", UpdateIngredient.naam);
+                sql.Parameters.AddWithValue("@naam", UpdateIngredient.naam_ingr);
                 sql.Parameters.AddWithValue("@unit", UpdateIngredient.unit);
-                sql.Parameters.AddWithValue("@prijs", UpdateIngredient.prijs);
+                sql.Parameters.AddWithValue("@prijs", UpdateIngredient.prijs_ingr);
 
                 sql.ExecuteNonQuery();
             }
@@ -387,7 +395,7 @@ UPDATE `ingredienten` SET `id`=@id,`naam`=@naam,`unit`=@unit,`prijs`=@prijs WHER
 UPDATE `bestelling` SET `id`=@id,`KlantId`=@KlantId,`Bestel_Id`=@Bestel_Id,`Status_Id`=@Status_Id WHERE `id` = @id";
 
 
-               
+
                 if (UpdateBestelling.Status_Id <= 0)
                 {
                     UpdateBestelling.Status_Id = SelectedBestelling.Status_Id;
@@ -451,7 +459,7 @@ UPDATE `bestelling` SET `id`=@id,`KlantId`=@KlantId,`Bestel_Id`=@Bestel_Id,`Stat
                 }
             }
             return result;
-            
+
         }
         public bool DeleteIngredient(int id)
         {
@@ -487,6 +495,6 @@ UPDATE `bestelling` SET `id`=@id,`KlantId`=@KlantId,`Bestel_Id`=@Bestel_Id,`Stat
 
         }
 
-        
+
     }
 }

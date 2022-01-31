@@ -19,6 +19,8 @@ namespace StonksPizza
     /// </summary>
     public partial class Dashboard : Window
     {
+
+
         public Dashboard()
         {
             InitializeComponent();
@@ -53,5 +55,6 @@ namespace StonksPizza
 
             item.ShowDialog();
         }
+
     }
 }

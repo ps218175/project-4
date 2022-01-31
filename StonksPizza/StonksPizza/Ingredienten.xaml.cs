@@ -86,14 +86,14 @@ namespace StonksPizza
             }
             ingredienten updateIngredient = lijstIngr.SelectedItem as ingredienten;
             id.Text = selectedIngredient.id.ToString();
-            naam.Text = selectedIngredient.naam.ToString();
+            naam.Text = selectedIngredient.naam_ingr.ToString();
             unit.Text = selectedIngredient.unit.ToString();
-            prijs.Text = selectedIngredient.prijs.ToString();
+            prijs.Text = selectedIngredient.prijs_ingr.ToString();
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(selectedIngredient.naam))
+            if (string.IsNullOrEmpty(selectedIngredient.naam_ingr))
             {
                 MessageBox.Show("Vul een naam voor de customer in");
                 return;
@@ -124,7 +124,7 @@ namespace StonksPizza
             }
             else
             {
-                MessageBox.Show($"Het {selectedIngredient.naam} kon niet worden verwijderd.");
+                MessageBox.Show($"Het {selectedIngredient.naam_ingr} kon niet worden verwijderd.");
             }
             id.Text = "";
             naam.Text = "";
@@ -134,7 +134,7 @@ namespace StonksPizza
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(NewIngredient.naam))
+            if (string.IsNullOrEmpty(NewIngredient.naam_ingr))
             {
                 MessageBox.Show("Vul een naam voor de customer in");
                 return;

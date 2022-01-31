@@ -10,8 +10,8 @@ namespace StonksPizza.Models
     {
         public int id { get; set; }
         public int unit { get; set; }
-        public string naam { get; set; }
-        public decimal prijs { get; set; }
+        public string naam_ingr { get; set; }
+        public decimal prijs_ingr { get; set; }
         
     }
 }

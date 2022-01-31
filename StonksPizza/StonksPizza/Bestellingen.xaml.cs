@@ -76,9 +76,7 @@ namespace StonksPizza
                 return;
             }
             bestelling updateBestelling = lijstbestelling.SelectedItem as bestelling;
-            id.Text = selectedBestelling.id.ToString();
-            klantId.Text = selectedBestelling.KlantId.ToString();
-            Bestel_Id.Text = selectedBestelling.Bestel_Id.ToString();
+           
             Status_Id.Text = selectedBestelling.Status_Id.ToString();
         }
 

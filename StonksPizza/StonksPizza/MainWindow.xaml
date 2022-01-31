@@ -10,7 +10,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10*"></ColumnDefinition>
             <ColumnDefinition Width="15*"></ColumnDefinition>
-
+            <ColumnDefinition Width="10*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"></RowDefinition>
@@ -30,10 +30,20 @@
                 <DataTemplate>
                     <DockPanel Width="200">
                         <TextBlock Text="{Binding naam}"/>
+                        
                     </DockPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <StackPanel x:Name="ingredienten" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Height="188" Margin="339.6,0,-0.4,24.4" Grid.RowSpan="2" VerticalAlignment="Bottom">
+            <TextBlock x:Name="naam_ingr"></TextBlock>
+            <TextBlock x:Name="unit"></TextBlock>
+
+            <TextBlock x:Name="prijs_ingr"></TextBlock>
+
+        </StackPanel>
+        
         <StackPanel Grid.Column="1" Grid.Row="1" DataContext="{Binding UpdatePizza}">
             
             <TextBox x:Name="id" Width="300" HorizontalAlignment="Left" Text="{Binding id}"/>

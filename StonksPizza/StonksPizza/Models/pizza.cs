@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StonksPizza.Models
 {
-    public class pizza
+    public class pizza : ingredienten
     {
         public int id { get; set; }
 

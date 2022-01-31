@@ -35,50 +35,46 @@ namespace StonksPizza
         public Login()
         {
             InitializeComponent();
-            LoadData();
+           
 
             DataContext = this;
         }
-        private void LoadData()
-        {
-
-        }
-
+       
 
         private void LoginPass()
         {
             try
             {
-                string myPassword = Password.Text;
-                salt = BCrypt.Net.BCrypt.GenerateSalt();
-                hash = BCrypt.Net.BCrypt.HashPassword(Password.Text, salt);
 
-                bool correct = BCrypt.Net.BCrypt.Verify(Password.Text, hash);
+
+
+
 
                 conn.Open();
                 MySqlCommand command = conn.CreateCommand();
                 command.CommandText = "" +
-                    @"SELECT u.id, u.name, u.email, u.password FROM users u  WHERE u.name = @name";
+                    @"SELECT u.id, u.name, u.email, u.password FROM users u  WHERE u.password = @password";
                 command.Parameters.AddWithValue("@name", txtname.Text);
-                command.Parameters.AddWithValue("@password", Password.Text).Value = hash;
+                command.Parameters.AddWithValue("@password", Password.Text);
                 MySqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                DataTable table = new DataTable();
+                table.Load(reader);
+
+
+                if (table.Rows.Count > 0)
                 {
 
-                    if (BCrypt.Net.BCrypt.Verify(Password.Text, (string)reader["password"])) ;
-                    {
-
-                        this.Hide();
-                        Dashboard signIn = new Dashboard();
-                        signIn.ShowDialog();
-                        this.Show();
+                    this.Hide();
+                    Dashboard signIn = new Dashboard();
+                    signIn.ShowDialog();
+                    this.Show();
 
 
 
-
-                    }
 
                 }
+
+
 
 
             }
@@ -86,19 +82,21 @@ namespace StonksPizza
             {
 
                 MessageBox.Show("");
+                return;
             }
+            return;
         }
-      
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             LoginPass();
-           
-           
+
+
 
         }
 
-      
-       
+
+
 
     }
 }

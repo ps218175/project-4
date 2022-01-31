@@ -23,9 +23,7 @@
         </ListView>
         <StackPanel DataContext="{Binding UpdateBestelling}" Margin="283,0,-0.4,0">
 
-            <TextBlock x:Name="id" Width="300" HorizontalAlignment="Left" Text="{Binding id}"/>
-            <TextBox x:Name="klantId" Width="300" HorizontalAlignment="Left" Text="{Binding klantId}"/>
-            <TextBox x:Name="Bestel_Id" Width="300" HorizontalAlignment="Left" Text="{Binding Bestel_Id}"/>
+        
             <ComboBox x:Name="Status_Id" Width="300" HorizontalAlignment="Left" Text="{Binding Status_Id}">
                 <ComboBoxItem x:Name="a">Wordt bereid</ComboBoxItem>
                 <ComboBoxItem x:Name="b">In de Oven</ComboBoxItem>
