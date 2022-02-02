@@ -37,11 +37,11 @@ namespace StonksPizza.Models
                 item.id = (int)row["id"];
                 item.naam = (string)row["naam"];
                 item.beschrijving = (string)row["beschrijving"];
-                item.prijs = (string)row["prijs"];
+                item.prijs = (decimal)row["prijs"];
                 item.naam_ingr = (string)row["naam_ingr"];
                 item.unit = (int)row["unit"];
                 item.prijs_ingr = (decimal)row["prijs_ingr"];
-                item.prijs = (string)row["prijs"];
+                item.prijs = (decimal)row["prijs"];
 
                 result.Add(item);
             }

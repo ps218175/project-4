@@ -12,6 +12,6 @@ namespace StonksPizza.Models
 
         public string naam { get; set; }
         public string beschrijving { get; set; }
-        public string prijs { get; set; }
+        public decimal prijs { get; set; }
     }
 }
