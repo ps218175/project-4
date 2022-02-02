@@ -23,8 +23,8 @@
         </ListView>
         <StackPanel DataContext="{Binding UpdateBestelling}" Margin="283,0,-0.4,0">
 
-        
-            <ComboBox x:Name="Status_Id" Width="300" HorizontalAlignment="Left" Text="{Binding Status_Id}">
+
+            <ComboBox x:Name="Status_Id" Width="300" HorizontalAlignment="Left" DisplayMemberPath="{Binding Status_Id}">
                 <ComboBoxItem x:Name="a">Wordt bereid</ComboBoxItem>
                 <ComboBoxItem x:Name="b">In de Oven</ComboBoxItem>
                 <ComboBoxItem x:Name="c">Onderweg</ComboBoxItem>

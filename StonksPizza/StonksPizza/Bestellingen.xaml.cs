@@ -26,6 +26,7 @@ namespace StonksPizza
     /// </summary>
     public partial class Bestellingen : Window
     {
+        
         private PizzaDb _db = new PizzaDb();
         private ObservableCollection<Models.bestelling> bestelling = new ObservableCollection<Models.bestelling>();
         public ObservableCollection<Models.bestelling> Bestelling
@@ -50,13 +51,18 @@ namespace StonksPizza
 
             }
         }
-
+       
         public Bestellingen()
         {
             DataContext = this;
             LoadData();
             InitializeComponent();
             UpdateBestelling = new Models.bestelling();
+            if (Status_Id.SelectedIndex <= 0)
+            {
+                Status_Id.SelectedIndex = 0;
+            }
+           
         }
         private void LoadData()
         {
@@ -71,13 +77,14 @@ namespace StonksPizza
 
         private void lijstbestelling_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             if (lijstbestelling.SelectedItem == null)
             {
                 return;
             }
             bestelling updateBestelling = lijstbestelling.SelectedItem as bestelling;
            
-            Status_Id.Text = selectedBestelling.Status_Id.ToString();
+            Status_Id.SelectedIndex = selectedBestelling.Status_Id - 1;
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
