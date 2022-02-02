@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pizza extends Model
 {
+    public $table = 'pizza';
     protected $fillable = [
         'naam','beschrijving', 'prijs',
     ];
