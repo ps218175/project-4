@@ -39,14 +39,20 @@
 
         </div>
         <div class="px-5 py-3">
-          <h3 class="text-gray-700 uppercase">{{ $product->naam }}</h3>
-          <p class="mt-2 text-gray-500">{{ $product->beschrijving }}</p>
-          <p class="mt-2 text-gray-500">€{{ $product->prijs }}</p>
+          <h3 class="text-gray-700 uppercase">{{ $product->name }}</h3>
+          <p class="mt-2 text-gray-500">{{ $product->description }}</p>
+          <p class="mt-2 text-gray-500">€{{ $product->amount }}</p>
+          <br>
+          <h3 class="text-gray-700 uppercase">Ingredienten</h3>
+          @foreach ($product->Ingredientrel as $ingredient)
+        
+          <p class="mt-2 text-gray-500">{{ $ingredient->naam_ingr }}</p>
+          @endforeach
           <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" value="{{ $product->id }}" name="id">
-                        <input type="hidden" value="{{ $product->naam }}" name="naam">
-                        <input type="hidden" value="{{ $product->prijs }}" name="price">
+                        <input type="hidden" value="{{ $product->name }}" name="name">
+                        <input type="hidden" value="{{ $product->amount }}" name="amount">
                         <input type="hidden" value="1" name="quantity">
                         <button class="px-4 py-2 text-white bg-red-500 rounded">Add To Cart</button>
                     </form>

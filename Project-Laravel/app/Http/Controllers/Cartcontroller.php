@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Size;
 use App\Models\Pizza;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
@@ -13,6 +14,8 @@ class Cartcontroller extends Controller
         $cartItems = \Cart::getContent();
         // dd($cartItems);
         return view('cart', compact('cartItems'));
+
+       
     }
 
 
@@ -20,10 +23,11 @@ class Cartcontroller extends Controller
     {
         \Cart::add([
             'id' => $request->id,
-            'name' => $request->naam,
-            'price' => $request->price,
+            'name' => $request->name,
+            'price' => $request->amount,
             'quantity' => $request->quantity,
-            
+         
+         
         ]);
         session()->flash('success', 'Product is Added to Cart Successfully !');
 
