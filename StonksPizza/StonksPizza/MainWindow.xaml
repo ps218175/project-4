@@ -36,13 +36,6 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <StackPanel x:Name="ingredienten" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Height="188" Margin="339.6,0,-0.4,24.4" Grid.RowSpan="2" VerticalAlignment="Bottom">
-            <TextBlock x:Name="naam_ingr"></TextBlock>
-            <TextBlock x:Name="unit"></TextBlock>
-
-            <TextBlock x:Name="prijs_ingr"></TextBlock>
-
-        </StackPanel>
         
         <StackPanel Grid.Column="1" Grid.Row="1" DataContext="{Binding UpdatePizza}">
             

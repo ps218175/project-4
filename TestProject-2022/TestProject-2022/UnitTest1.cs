@@ -20,7 +20,7 @@ namespace TestProject_2022
          );
 
         [TestMethod]
-        public List<pizza> TestMethod1()
+        public void TestMethod1()
         {
             List<pizza> result = new List<pizza>();
 
@@ -45,7 +45,7 @@ namespace TestProject_2022
 
             conn.Close();
 
-            return result;
+            
         }
         [TestMethod]
 

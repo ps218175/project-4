@@ -25,7 +25,7 @@ namespace StonksPizza.Models
 
             conn.Open();
             MySqlCommand sql = conn.CreateCommand();
-            sql.CommandText = "SELECT * from pizza inner join pizza_ingredienten on pizza.id = pizza_ingredienten.PizzaId INNER JOIN ingredienten ON ingredienten.id = pizza_ingredienten.IngredientId";
+            sql.CommandText = "SELECT * from pizza";
             MySqlDataReader reader = sql.ExecuteReader();
 
             DataTable table = new DataTable();
@@ -38,10 +38,7 @@ namespace StonksPizza.Models
                 item.naam = (string)row["naam"];
                 item.beschrijving = (string)row["beschrijving"];
                 item.prijs = (decimal)row["prijs"];
-                item.naam_ingr = (string)row["naam_ingr"];
-                item.unit = (int)row["unit"];
-                item.prijs_ingr = (decimal)row["prijs_ingr"];
-                item.prijs = (decimal)row["prijs"];
+                
 
                 result.Add(item);
             }
@@ -67,9 +64,9 @@ namespace StonksPizza.Models
             {
                 ingredienten item = new ingredienten();
                 item.id = (int)row["id"];
-                item.naam_ingr = (string)row["naam"];
+                item.naam_ingr = (string)row["naam_ingr"];
                 item.unit = (int)row["unit"];
-                item.prijs_ingr = (decimal)row["prijs"];
+                item.prijs_ingr = (decimal)row["prijs_ingr"];
 
                 result.Add(item);
             }
@@ -226,7 +223,7 @@ INSERT INTO `pizza`(`id`, `naam`, `beschrijving`, `prijs`) VALUES (@id,@naam,@be
                 MySqlCommand sql = conn.CreateCommand();
                 sql.CommandText =
                     @"
-INSERT INTO `ingredienten`(`id`, `naam`, `unit`, `prijs`) VALUES (@id,@naam,@unit,@prijs)";
+INSERT INTO `ingredienten`(`id`, `naam_ingr`, `unit`, `prijs_ingr`) VALUES (@id,@naam,@unit,@prijs)";
 
                 sql.Parameters.AddWithValue("@id", newIngredient.id);
                 sql.Parameters.AddWithValue("@naam", newIngredient.naam_ingr);
@@ -326,7 +323,7 @@ UPDATE `pizza` SET `id`=@id,`naam`=@naam,`beschrijving`=@beschrijving,`prijs`=@p
                 MySqlCommand sql = conn.CreateCommand();
                 sql.CommandText =
                     @"
-UPDATE `ingredienten` SET `id`=@id,`naam`=@naam,`unit`=@unit,`prijs`=@prijs WHERE `id` = @id";
+UPDATE `ingredienten` SET `id`=@id,`naam_ingr`=@naam,`unit`=@unit,`prijs_ingr`=@prijs WHERE `id` = @id";
 
 
                 if (UpdateIngredient.naam_ingr == null)

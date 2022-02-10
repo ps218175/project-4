@@ -89,9 +89,7 @@ namespace StonksPizza
             naam.Text = selectedPizza.naam.ToString();
             beschrijving.Text = selectedPizza.beschrijving.ToString();
             prijs.Text = selectedPizza.prijs.ToString();
-            naam_ingr.Text = selectedPizza.naam_ingr.ToString();
-            unit.Text = selectedPizza.unit.ToString();
-            prijs_ingr.Text = selectedPizza.prijs_ingr.ToString();
+           
         }
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {

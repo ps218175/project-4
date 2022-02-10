@@ -33,7 +33,7 @@
             
             <StackPanel Orientation="Horizontal">
                 <Button Content="Save" Click="BtnSave_Click" IsDefault="True" Width="75"/>
-                <Button Content="Delete" Background="Red" Click="Button_Click_1" IsDefault="True" Width="75"/>
+              
             </StackPanel>
         </StackPanel>
     </Grid>

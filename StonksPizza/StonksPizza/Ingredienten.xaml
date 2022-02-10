@@ -25,7 +25,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <DockPanel Width="200">
-                        <TextBlock Text="{Binding naam}" HorizontalAlignment="Left"/>
+                        <TextBlock Text="{Binding naam_ingr}" HorizontalAlignment="Left"/>
                     </DockPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -33,9 +33,9 @@
         <StackPanel Grid.Column="1" Grid.Row="1" DataContext="{Binding UpdateIngredient}">
 
             <TextBox x:Name="id" Width="300" HorizontalAlignment="Left" Text="{Binding id}"/>
-            <TextBox x:Name="naam" Width="300" HorizontalAlignment="Left" Text="{Binding naam}"/>
+            <TextBox x:Name="naam" Width="300" HorizontalAlignment="Left" Text="{Binding naam_ingr}"/>
             <TextBox x:Name="unit" Width="300" HorizontalAlignment="Left" Text="{Binding unit}"/>
-            <TextBox x:Name="prijs" Width="300" HorizontalAlignment="Left" Text="{Binding prijs}"/>
+            <TextBox x:Name="prijs" Width="300" HorizontalAlignment="Left" Text="{Binding prijs_ingr}"/>
             <StackPanel Orientation="Horizontal">
                 <Button Content="Save" Click="BtnSave_Click" IsDefault="True" Width="75"/>
                 <Button Content="Delete" Background="Red" Click="Button_Click_1" IsDefault="True" Width="75"/>
@@ -46,11 +46,11 @@
             <TextBlock Text="Id:"/>
             <TextBox Text="{Binding id}"/>
             <TextBlock Text="Naam:"/>
-            <TextBox Text="{Binding naam}"/>
+            <TextBox Text="{Binding naam_ingr}"/>
             <TextBlock Text="unit:"/>
             <TextBox Text="{Binding unit}"/>
             <TextBlock Text="prijs:"/>
-            <TextBox Text="{Binding prijs}"/>
+            <TextBox Text="{Binding prijs_ingr}"/>
 
 
 
