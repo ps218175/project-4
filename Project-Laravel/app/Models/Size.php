@@ -5,15 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pizza extends Model
+class Size extends Model
 {
-    use HasFactory;
-    public $table = 'pizzas';
+    public $table = 'size';
     protected $fillable = [
-        'naam','description', 'amount',
+        'size',
     ];
     public function Ingredientrel()
     {
-        return $this->belongsToMany(Ingredient::class,'ingredient_pizzas');
+        return $this->belongsToMany('App\Ingredient');
     }
 }

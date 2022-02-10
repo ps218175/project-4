@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pizza;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\size;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,6 +24,8 @@ class PizzaController extends Controller
         $pizza = Pizza::all();
 
         return view('order', ['pizza' => $pizza]);
+
+   
 
       
     }

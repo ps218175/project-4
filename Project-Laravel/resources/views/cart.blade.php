@@ -2,6 +2,12 @@
 
 
 @section('content')
+
+<style>
+  h1{
+margin: 20% 20% 20% 20%;
+  }
+</style>
 <main class="my-8">
   <div class="container px-6 mx-auto">
     <div class="flex justify-center my-6">
@@ -17,14 +23,17 @@
         </div>
         @endif
         <h3 class="text-3xl text-bold">Cart List</h3>
-        <div class="flex-1">
+        <div class="flex-6">
           <table class="w-full text-sm lg:text-base" cellspacing="0">
             <thead>
               <tr class="h-12 uppercase">
                 <th class="hidden md:table-cell"></th>
                 <th class="text-left">Name</th>
+                  <th class="text-left">size</th>
+     
                 <th class="pl-5 text-left lg:text-right lg:pl-0">
                   <span class="lg:hidden" title="Quantity">Qtd</span>
+       
                   <span class="hidden lg:inline">Quantity</span>
                 </th>
                 <th class="hidden text-right md:table-cell"> price</th>
@@ -45,9 +54,17 @@
 
                   </a>
                 </td>
+                <td class="w20">
+                <select name="id_jenis_surat" class="form-control">
+         <option>25cm</option>
+         <option  > 30cm </option> 
+            <option  > 35cm </option> 
+         
+        </select>
+                </td>
                 <td class="justify-center mt-6 md:justify-end md:flex">
                   <div class="h-10 w-28">
-                    <div class="relative flex flex-row w-full h-8">
+                    <div class="relative flex flex-row w-full h-9">
 
                       <form action="{{ route('cart.update') }}" method="POST">
                         @csrf
