@@ -8,7 +8,7 @@ namespace StonksPizza.Models
 {
     public class pizza : ingredienten
     {
-        public int id { get; set; }
+        public ulong id { get; set; }
 
         public string naam { get; set; }
         public string beschrijving { get; set; }

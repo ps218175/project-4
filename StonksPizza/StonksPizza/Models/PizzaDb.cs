@@ -25,7 +25,7 @@ namespace StonksPizza.Models
 
             conn.Open();
             MySqlCommand sql = conn.CreateCommand();
-            sql.CommandText = "SELECT * from pizza";
+            sql.CommandText = "SELECT * from pizzas";
             MySqlDataReader reader = sql.ExecuteReader();
 
             DataTable table = new DataTable();
@@ -34,10 +34,10 @@ namespace StonksPizza.Models
             foreach (DataRow row in table.Rows)
             {
                 pizza item = new pizza();
-                item.id = (int)row["id"];
-                item.naam = (string)row["naam"];
-                item.beschrijving = (string)row["beschrijving"];
-                item.prijs = (decimal)row["prijs"];
+                item.id = (ulong)row["id"];
+                item.naam = (string)row["name"];
+                item.beschrijving = (string)row["description"];
+                item.prijs = (decimal)row["amount"];
                 
 
                 result.Add(item);
@@ -54,7 +54,7 @@ namespace StonksPizza.Models
 
             conn.Open();
             MySqlCommand sql = conn.CreateCommand();
-            sql.CommandText = "SELECT * FROM `ingredienten`";
+            sql.CommandText = "SELECT * FROM `ingredients`";
             MySqlDataReader reader = sql.ExecuteReader();
 
             DataTable table = new DataTable();
@@ -63,7 +63,7 @@ namespace StonksPizza.Models
             foreach (DataRow row in table.Rows)
             {
                 ingredienten item = new ingredienten();
-                item.id = (int)row["id"];
+                item.id = (ulong)row["id"];
                 item.naam_ingr = (string)row["naam_ingr"];
                 item.unit = (int)row["unit"];
                 item.prijs_ingr = (decimal)row["prijs_ingr"];
@@ -81,7 +81,7 @@ namespace StonksPizza.Models
 
             conn.Open();
             MySqlCommand sql = conn.CreateCommand();
-            sql.CommandText = "SELECT * from bestelling inner join status on bestelling.Status_Id = status.id INNER JOIN customers ON bestelling.KlantId = customers.id";
+            sql.CommandText = "SELECT * from bestelling inner join status on bestelling.status_id = status.id INNER JOIN customers ON bestelling.klant_id = customers.id";
             MySqlDataReader reader = sql.ExecuteReader();
 
             DataTable table = new DataTable();
@@ -94,7 +94,7 @@ namespace StonksPizza.Models
                 item.Status_Id = (int)row["Status_Id"];
                 item.Bestel_Id = (int)row["Bestel_Id"];
                 item.status = (string)row["status"];
-                item.KlantId = (int)row["KlantId"];
+                item.KlantId = (int)row["klant_id"];
                 item.last_name = (string)row["last_name"];
                 result.Add(item);
             }
@@ -187,7 +187,7 @@ INSERT INTO `employees`(`id`, `first_name`, `last_name`, `address`, `phone`, `zi
                 MySqlCommand sql = conn.CreateCommand();
                 sql.CommandText =
                     @"
-INSERT INTO `pizza`(`id`, `naam`, `beschrijving`, `prijs`) VALUES (@id,@naam,@beschrijving,@prijs)";
+INSERT INTO `pizzas`(`id`, `name`, `description`, `amount`) VALUES (@id,@naam,@beschrijving,@prijs)";
 
                 sql.Parameters.AddWithValue("@id", newPizza.id);
                 sql.Parameters.AddWithValue("@naam", newPizza.naam);
@@ -223,7 +223,7 @@ INSERT INTO `pizza`(`id`, `naam`, `beschrijving`, `prijs`) VALUES (@id,@naam,@be
                 MySqlCommand sql = conn.CreateCommand();
                 sql.CommandText =
                     @"
-INSERT INTO `ingredienten`(`id`, `naam_ingr`, `unit`, `prijs_ingr`) VALUES (@id,@naam,@unit,@prijs)";
+INSERT INTO `ingredients`(`id`, `naam_ingr`, `unit`, `prijs_ingr`) VALUES (@id,@naam,@unit,@prijs)";
 
                 sql.Parameters.AddWithValue("@id", newIngredient.id);
                 sql.Parameters.AddWithValue("@naam", newIngredient.naam_ingr);
@@ -261,7 +261,7 @@ INSERT INTO `ingredienten`(`id`, `naam_ingr`, `unit`, `prijs_ingr`) VALUES (@id,
                 MySqlCommand sql = conn.CreateCommand();
                 sql.CommandText =
                     @"
-UPDATE `pizza` SET `id`=@id,`naam`=@naam,`beschrijving`=@beschrijving,`prijs`=@prijs WHERE `id` = @id";
+UPDATE `pizzas` SET `id`=@id,`name`=@naam,`description`=@beschrijving,`amount`=@prijs WHERE `id` = @id";
 
 
                 if (UpdatePizza.naam == null)
@@ -323,7 +323,7 @@ UPDATE `pizza` SET `id`=@id,`naam`=@naam,`beschrijving`=@beschrijving,`prijs`=@p
                 MySqlCommand sql = conn.CreateCommand();
                 sql.CommandText =
                     @"
-UPDATE `ingredienten` SET `id`=@id,`naam_ingr`=@naam,`unit`=@unit,`prijs_ingr`=@prijs WHERE `id` = @id";
+UPDATE `ingredients` SET `id`=@id,`naam_ingr`=@naam,`unit`=@unit,`prijs_ingr`=@prijs WHERE `id` = @id";
 
 
                 if (UpdateIngredient.naam_ingr == null)
@@ -386,7 +386,7 @@ UPDATE `ingredienten` SET `id`=@id,`naam_ingr`=@naam,`unit`=@unit,`prijs_ingr`=@
                 MySqlCommand sql = conn.CreateCommand();
                 sql.CommandText =
                     @"
-UPDATE `bestelling` SET `id`=@id,`KlantId`=@KlantId,`Bestel_Id`=@Bestel_Id,`Status_Id`=@Status_Id WHERE `id` = @id";
+UPDATE `bestelling` SET `id`=@id,`klant_id`=@KlantId,`Bestel_Id`=@Bestel_Id,`Status_Id`=@Status_Id WHERE `id` = @id";
 
 
 
@@ -422,7 +422,7 @@ UPDATE `bestelling` SET `id`=@id,`KlantId`=@KlantId,`Bestel_Id`=@Bestel_Id,`Stat
         }
 
         //Delete
-        public bool DeletePizza(int id)
+        public bool DeletePizza(ulong id)
         {
             bool result = true;
             try
@@ -433,7 +433,7 @@ UPDATE `bestelling` SET `id`=@id,`KlantId`=@KlantId,`Bestel_Id`=@Bestel_Id,`Stat
                 }
                 MySqlCommand sql = conn.CreateCommand();
                 sql.CommandText =
-                    @"DELETE FROM pizza 
+                    @"DELETE FROM pizzas 
                        WHERE id = @id";
 
                 sql.Parameters.AddWithValue("@id", id);
@@ -455,7 +455,7 @@ UPDATE `bestelling` SET `id`=@id,`KlantId`=@KlantId,`Bestel_Id`=@Bestel_Id,`Stat
             return result;
 
         }
-        public bool DeleteIngredient(int id)
+        public bool DeleteIngredient(ulong id)
         {
             bool result = true;
             try
@@ -466,7 +466,7 @@ UPDATE `bestelling` SET `id`=@id,`KlantId`=@KlantId,`Bestel_Id`=@Bestel_Id,`Stat
                 }
                 MySqlCommand sql = conn.CreateCommand();
                 sql.CommandText =
-                    @"DELETE FROM ingredienten 
+                    @"DELETE FROM ingredients 
                        WHERE id = @id";
 
                 sql.Parameters.AddWithValue("@id", id);
